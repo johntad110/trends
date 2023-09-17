@@ -1,5 +1,5 @@
 import ProfileHeader from "@/components/shared/ProfileHeader"
-import { fetchUsser } from "@/lib/actions/user.actions"
+import { fetchUser } from "@/lib/actions/user.actions"
 import { currentUser } from "@clerk/nextjs"
 import { redirect } from "next/navigation"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -11,7 +11,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
     const user = await currentUser()
     if (!user) return null
 
-    const userInfo = await fetchUsser(params.id)
+    const userInfo = await fetchUser(params.id)
     if (!userInfo?.onboarded) redirect('/onboarding')
 
 
